@@ -12,7 +12,7 @@ from pydantic import BaseModel, Field
 from openai import OpenAI
 
 APP_NAME = "SLR Research Assistant API"
-AI_MODEL = os.getenv("OPENAI_MODEL", "gpt-6")
+AI_MODEL = os.getenv("OPENAI_MODEL", "gpt-6-astra")
 OPENALEX_MAILTO = os.getenv("OPENALEX_MAILTO", "")
 CROSSREF_MAILTO = os.getenv("CROSSREF_MAILTO", "")
 SCOPUS_API_KEY = os.getenv("SCOPUS_API_KEY", "")
@@ -85,6 +85,15 @@ def year_filter(req):
         filters.append(f"to_publication_date:{req.to_year}-12-31")
     return ",".join(filters)
 
+def reconstruct_abstract(inverted):
+    if not inverted:
+        return ""
+    words = {}
+    for word, positions in inverted.items():
+        for pos in positions:
+            words[pos] = word
+    return " ".join(words[k] for k in sorted(words))
+
 def normalize_openalex(work):
     authors = [a.get("author", {}).get("display_name", "") for a in work.get("authorships", [])]
     loc = work.get("primary_location") or {}
@@ -94,7 +103,7 @@ def normalize_openalex(work):
         "authors": "; ".join(x for x in authors if x),
         "year": work.get("publication_year", ""),
         "doi": (work.get("doi") or "").replace("https://doi.org/", ""),
-        "abstract": "",
+        "abstract": reconstruct_abstract(work.get("abstract_inverted_index")),
         "language": work.get("language", ""),
         "keywords": "; ".join(k.get("display_name", "") for k in work.get("keywords", [])),
         "source": source,
