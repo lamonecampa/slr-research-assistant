@@ -96,6 +96,52 @@
    <div class="page-head"><div><p class="eyebrow">STEP 09 · MANUSCRIPT READINESS</p><h1>Reporting & export</h1><p class="muted">Generate structured project outputs and check reporting completeness.</p></div></div>
    <div class="panel"><h2>PRISMA 2020 checklist</h2><p class="muted">Track 27 reporting items. This is a reporting guideline, not a substitute for sound review conduct.</p><div id="checklist"></div><div class="row"><button class="btn outline" id="exportChecklist">Export checklist CSV</button></div></div>
    <div class="panel"><h2>Export center</h2><div class="export-grid"><button class="export-card" id="exportProjectJson"><b>Project backup · JSON</b><span>Protocol, records, decisions, appraisals, extraction and logs</span></button><button class="export-card" id="exportAllCsv"><b>Study library · CSV</b><span>Bibliographic records and screening fields</span></button><button class="export-card" id="exportMatrixCsv"><b>Evidence matrix · CSV</b><span>Structured extraction fields</span></button><button class="export-card" id="exportSearchCsv"><b>Search log · CSV</b><span>Database query history and search metadata</span></button></div></div>
+   <div class="panel form-panel publication-panel">
+    <div class="panel-head"><div><h2>Journal target profile</h2><p class="muted">Record the actual target journal instructions. SINTA rank is a journal attribute, not an automatic article-quality score.</p></div><span class="pill">Submission planning</span></div>
+    <div class="form-grid">
+     <label class="span-2">Target journal name<input id="pubJournal" placeholder="Full journal title"></label>
+     <label>Target accreditation<select id="pubRank"><option value="">Not selected</option><option>SINTA 1</option><option>SINTA 2</option><option>SINTA 3</option><option>Other / international</option></select></label>
+     <label>Field / scope<input id="pubScope" placeholder="Electrical engineering, computer science, etc."></label>
+     <label class="span-2">Author guidelines URL<input id="pubGuidelines" type="url" placeholder="https://journal.example/author-guidelines"></label>
+     <label>Article type<input id="pubArticleType" placeholder="Systematic review / review article"></label>
+     <label>Reference style<input id="pubStyle" placeholder="IEEE / APA 7 / Vancouver / journal-specific"></label>
+     <label>Abstract word limit<input id="pubAbstractLimit" type="number" min="0" placeholder="e.g. 250"></label>
+     <label>Main text word limit<input id="pubWordLimit" type="number" min="0" placeholder="e.g. 7000"></label>
+    </div>
+    <p class="muted small">Use the current author guidelines of the selected journal. The SINTA label alone does not define its scope, template, word limits, or citation style.</p>
+   </div>
+   <div class="panel form-panel">
+    <div class="panel-head"><div><h2>Academic manuscript workspace</h2><p class="muted">Draft each section from the actual review protocol, included studies, extraction matrix and synthesis. Keep unsupported claims out.</p></div><button class="btn primary" id="savePublication">Save manuscript</button></div>
+    <label>Manuscript title<input id="mTitle" placeholder="Specific, informative title reflecting the review scope and method"></label>
+    <label>Abstract<textarea id="mAbstract" rows="5" placeholder="Background; objective; eligibility; information sources; synthesis; key results; limitations; conclusion. Do not invent counts or findings."></textarea></label>
+    <label>Keywords<input id="mKeywords" placeholder="5–8 precise terms, subject to journal instructions"></label>
+    <label>1. Introduction<textarea id="mIntroduction" rows="7" placeholder="Establish the problem, critically synthesize prior reviews, identify the specific knowledge gap, justify the review, and state the objective/questions."></textarea></label>
+    <label>2. Methods<textarea id="mMethods" rows="9" placeholder="Protocol and registration; eligibility; information sources; full search strategy; selection; data collection; appraisal; synthesis. Include dates, platforms, versions and reproducible details."></textarea></label>
+    <label>3. Results<textarea id="mResults" rows="9" placeholder="Report actual PRISMA counts, study characteristics, appraisal results, and synthesis findings. Distinguish descriptive mapping from inferential conclusions."></textarea></label>
+    <label>4. Discussion<textarea id="mDiscussion" rows="9" placeholder="Interpret the findings against prior evidence; explain convergence and contradiction; discuss implications, limitations of included evidence and review process, and future research."></textarea></label>
+    <label>5. Conclusion<textarea id="mConclusion" rows="4" placeholder="Answer the research question proportionately to the evidence. Avoid claims that exceed the included studies."></textarea></label>
+    <div class="form-grid">
+     <label>Funding statement<textarea id="mFunding" rows="2" placeholder="Funding source or 'No specific funding' if accurate"></textarea></label>
+     <label>Conflict of interest<textarea id="mConflict" rows="2" placeholder="Declare actual conflicts or none, if accurate"></textarea></label>
+     <label>Author contributions<textarea id="mContributions" rows="2" placeholder="Use the journal's required taxonomy"></textarea></label>
+     <label>Data availability<textarea id="mData" rows="2" placeholder="Search strategies, extraction data, repository link, or restrictions"></textarea></label>
+    </div>
+    <label>References (one reference per line; include DOI where available)<textarea id="mReferences" rows="8" placeholder="Paste complete references. Verify every item against the original source and journal style."></textarea></label>
+    <div class="row"><button class="btn outline" id="exportManuscript">Export manuscript · Markdown</button><button class="btn outline" id="exportPublicationAudit">Export readiness audit · CSV</button><span class="muted small">Markdown export is available in this frontend; DOCX template generation is not yet implemented.</span></div>
+   </div>
+   <div class="panel form-panel">
+    <div class="panel-head"><div><h2>Evidence-to-claim ledger</h2><p class="muted">Make the chain from manuscript claim to source study auditable. One claim per line, with study ID/title, page/table/figure, and supporting or contradictory evidence.</p></div></div>
+    <label>Claim → source → locator → interpretation<textarea id="mEvidenceLedger" rows="7" placeholder="Claim: ... | Source: Author (year), DOI ... | Locator: p. 5, Table 2 | Evidence: ... | Caveat/contradiction: ..."></textarea></label>
+    <p class="notice">A citation is not proof by itself. Verify that the cited source actually supports the exact claim, including direction, population, context and limitations.</p>
+   </div>
+   <div class="panel">
+    <div class="panel-head"><div><h2>Reference and DOI verification</h2><p class="muted">Checks DOI resolvability and compares returned Crossref metadata. This is metadata validation, not proof that a source supports a claim.</p></div><button class="btn outline" id="verifyDois">Verify DOI list</button></div>
+    <div id="doiStatus" class="empty">Enter references with DOI identifiers, then run verification.</div>
+   </div>
+   <div class="panel">
+    <div class="panel-head"><div><h2>Pre-submission quality audit</h2><p class="muted">Rule-based completeness checks. The result is not a prediction of acceptance or a SINTA score.</p></div><button class="btn outline" id="runPublicationAudit">Run audit</button></div>
+    <div id="publicationAudit" class="check-list"><p class="empty">Run the audit after entering manuscript and review data.</p></div>
+   </div>
   </section>
   <section class="page" id="settings">
    <div class="page-head"><div><p class="eyebrow">CONFIGURATION</p><h1>Integrations & settings</h1><p class="muted">Connect a secured backend. Never put API keys in this static GitHub Pages frontend.</p></div><button class="btn primary" id="saveSettings">Save settings</button></div>
