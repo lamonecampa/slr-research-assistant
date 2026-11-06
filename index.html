@@ -138,7 +138,21 @@
     <div class="panel-head"><div><h2>Reference and DOI verification</h2><p class="muted">Checks DOI resolvability and compares returned Crossref metadata. This is metadata validation, not proof that a source supports a claim.</p></div><button class="btn outline" id="verifyDois">Verify DOI list</button></div>
     <div id="doiStatus" class="empty">Enter references with DOI identifiers, then run verification.</div>
    </div>
-   <div class="panel">
+      <div class="panel form-panel">
+    <div class="panel-head"><div><h2>Simulasi reviewer pra-submission</h2><p class="muted">Penilaian kritis internal, bukan prediksi keputusan editor. Gunakan alasan tertulis, bukan sekadar angka.</p></div><span class="pill">Peer-review rehearsal</span></div>
+    <div class="form-grid">
+     <label>Novelty and significance<select id="rvNovelty"><option value="">Not assessed</option><option>1 · Major weakness</option><option>2 · Weak</option><option>3 · Adequate</option><option>4 · Strong</option><option>5 · Very strong</option></select></label>
+     <label>Research question and scope<select id="rvQuestion"><option value="">Not assessed</option><option>1 · Major weakness</option><option>2 · Weak</option><option>3 · Adequate</option><option>4 · Strong</option><option>5 · Very strong</option></select></label>
+     <label>Methodological rigor<select id="rvMethods"><option value="">Not assessed</option><option>1 · Major weakness</option><option>2 · Weak</option><option>3 · Adequate</option><option>4 · Strong</option><option>5 · Very strong</option></select></label>
+     <label>Critical synthesis and analysis<select id="rvSynthesis"><option value="">Not assessed</option><option>1 · Major weakness</option><option>2 · Weak</option><option>3 · Adequate</option><option>4 · Strong</option><option>5 · Very strong</option></select></label>
+     <label>Contribution and implications<select id="rvContribution"><option value="">Not assessed</option><option>1 · Major weakness</option><option>2 · Weak</option><option>3 · Adequate</option><option>4 · Strong</option><option>5 · Very strong</option></select></label>
+     <label>Fit with target journal<select id="rvFit"><option value="">Not assessed</option><option>1 · Major weakness</option><option>2 · Weak</option><option>3 · Adequate</option><option>4 · Strong</option><option>5 · Very strong</option></select></label>
+    </div>
+    <label>Major concerns<textarea id="rvConcerns" rows="5" placeholder="Unsupported claims, methodological weaknesses, missing studies, contradictions, overgeneralization, reporting omissions."></textarea></label>
+    <label>Priority revisions<textarea id="rvRevisions" rows="5" placeholder="List specific revisions and the evidence needed to close each issue."></textarea></label>
+    <div class="row"><button class="btn outline" id="saveReviewerAudit">Save reviewer assessment</button><button class="btn outline" id="exportReviewerAudit">Export reviewer assessment · CSV</button></div>
+   </div>
+<div class="panel">
     <div class="panel-head"><div><h2>Pre-submission quality audit</h2><p class="muted">Rule-based completeness checks. The result is not a prediction of acceptance or a SINTA score.</p></div><button class="btn outline" id="runPublicationAudit">Run audit</button></div>
     <div id="publicationAudit" class="check-list"><p class="empty">Run the audit after entering manuscript and review data.</p></div>
    </div>
