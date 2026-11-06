@@ -38,7 +38,7 @@ An evidence-first workspace for systematic literature reviews, designed around t
 - Evidence-to-claim ledger for source-level traceability and page/table/figure locators
 - Crossref DOI resolution and metadata comparison for DOI-bearing references
 - Rule-based pre-submission completeness audit with actionable gaps; it is not an acceptance predictor or SINTA score
-- Markdown manuscript export and CSV readiness-audit export
+- Editable journal formatting profile: font, size, spacing, margins, alignment, headings, abstract and reference spacing\n- Formatted DOCX export using the saved profile, with local browser generation
 
 ### Reporting and export
 - PRISMA 2020 count fields with arithmetic consistency checks
@@ -106,9 +106,9 @@ This release is a functional research-workflow prototype, not a validated replac
 - Provider API response fields and access vary by subscription and API version; validate connector output before formal reporting.
 - AI screening/extraction/synthesis only sees the metadata/abstract supplied by the frontend unless full-text processing is separately implemented. Verify all outputs against the original paper. AI recommendations must not independently exclude studies.
 - The PRISMA flow panel provides arithmetic checks and a downloadable schematic. It does not automatically establish a PRISMA-compliant review; verify every count against search logs and full-text decisions. Reports and studies are different units.
-- The manuscript editor is a structured drafting workspace. It does not autonomously produce a validated scholarly article; authors must write and verify every claim against source evidence. Markdown export is available, but journal-specific DOCX formatting is not yet implemented.
+- The manuscript editor is a structured drafting workspace. It does not autonomously produce a validated scholarly article; authors must write and verify every claim against source evidence. Markdown and formatted DOCX exports are available. DOCX formatting uses the user-entered journal profile; it does not import or reproduce an uploaded publisher DOCX template exactly. Users must verify every setting against the current author guidelines and inspect the generated file before submission.
 - The appraisal form is configurable. It does not automatically implement scoring algorithms for JBI, CASP, MMAT, RoB 2, ROBINS-I, QUADAS-2 or AMSTAR 2. Use the official instrument and its domain-specific guidance.
-- No statistical meta-analysis engine/effect-size calculator, GRADE/CERQual implementation, PDF full-text parser, multi-user adjudication workflow, or journal-template DOCX generator is included yet. DOI checks query Crossref from the browser and may not resolve DOIs absent from Crossref; compare all metadata against the publisher's version of record.
+- No statistical meta-analysis engine/effect-size calculator, GRADE/CERQual implementation, PDF full-text parser, or multi-user adjudication workflow is included yet. The DOCX generator applies configurable page and text styles but does not clone publisher-specific Word template internals, macros, section breaks, or complex table/figure layouts. DOI checks query Crossref from the browser and may not resolve DOIs absent from Crossref; compare all metadata against the publisher's version of record.
 
 ## Methodological references
 
