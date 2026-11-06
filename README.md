@@ -32,6 +32,14 @@ An evidence-first workspace for systematic literature reviews, designed around t
 - Thematic register, research-gap register and AI-assisted narrative synthesis draft
 - Evidence traceability fields and cautious output instructions
 
+### Journal publication workspace
+- Target-journal profile: journal name, SINTA 1/2/3 target, scope, author-guideline URL, article type, citation style and word limits
+- Structured manuscript editor: title, abstract, keywords, Introduction, Methods, Results, Discussion, Conclusion and declarations
+- Evidence-to-claim ledger for source-level traceability and page/table/figure locators
+- Crossref DOI resolution and metadata comparison for DOI-bearing references
+- Rule-based pre-submission completeness audit with actionable gaps; it is not an acceptance predictor or SINTA score
+- Markdown manuscript export and CSV readiness-audit export
+
 ### Reporting and export
 - PRISMA 2020 count fields with arithmetic consistency checks
 - PRISMA-style SVG flow export
@@ -98,8 +106,9 @@ This release is a functional research-workflow prototype, not a validated replac
 - Provider API response fields and access vary by subscription and API version; validate connector output before formal reporting.
 - AI screening/extraction/synthesis only sees the metadata/abstract supplied by the frontend unless full-text processing is separately implemented. Verify all outputs against the original paper. AI recommendations must not independently exclude studies.
 - The PRISMA flow panel provides arithmetic checks and a downloadable schematic. It does not automatically establish a PRISMA-compliant review; verify every count against search logs and full-text decisions. Reports and studies are different units.
+- The manuscript editor is a structured drafting workspace. It does not autonomously produce a validated scholarly article; authors must write and verify every claim against source evidence. Markdown export is available, but journal-specific DOCX formatting is not yet implemented.
 - The appraisal form is configurable. It does not automatically implement scoring algorithms for JBI, CASP, MMAT, RoB 2, ROBINS-I, QUADAS-2 or AMSTAR 2. Use the official instrument and its domain-specific guidance.
-- No meta-analysis engine, effect-size calculator, GRADE/CERQual implementation, DOI enrichment resolver, PDF full-text parser, multi-user adjudication workflow, or manuscript DOCX generator is included yet.
+- No statistical meta-analysis engine/effect-size calculator, GRADE/CERQual implementation, PDF full-text parser, multi-user adjudication workflow, or journal-template DOCX generator is included yet. DOI checks query Crossref from the browser and may not resolve DOIs absent from Crossref; compare all metadata against the publisher's version of record.
 
 ## Methodological references
 
