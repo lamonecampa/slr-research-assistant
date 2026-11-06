@@ -5,6 +5,7 @@
 <meta name="description" content="Evidence-first workspace for systematic literature reviews, screening, critical appraisal, synthesis and PRISMA 2020 reporting.">
 <title>SLR Research Assistant | Evidence Workspace</title>
 <link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
 </head>
 <body>
 <header class="topbar">
@@ -108,7 +109,25 @@
      <label>Abstract word limit<input id="pubAbstractLimit" type="number" min="0" placeholder="e.g. 250"></label>
      <label>Main text word limit<input id="pubWordLimit" type="number" min="0" placeholder="e.g. 7000"></label>
     </div>
-    <p class="muted small">Use the current author guidelines of the selected journal. The SINTA label alone does not define its scope, template, word limits, or citation style.</p>
+    <details class="journal-format" open>
+    <summary><b>Journal-specific formatting profile</b><span class="muted small">Set these values from the journal's current author guidelines or official template.</span></summary>
+    <div class="form-grid">
+     <label>Font family<select id="pubFont"><option>Times New Roman</option><option>Arial</option><option>Calibri</option><option>Cambria</option><option>Georgia</option></select></label>
+     <label>Body font size (pt)<input id="pubFontSize" type="number" min="8" max="16" value="12"></label>
+     <label>Line spacing<select id="pubLineSpacing"><option value="1">Single (1.0)</option><option value="1.15">1.15</option><option value="1.5" selected>1.5</option><option value="2">Double (2.0)</option></select></label>
+     <label>Paragraph alignment<select id="pubAlignment"><option value="JUSTIFIED">Justified</option><option value="LEFT">Left</option></select></label>
+     <label>Top margin (cm)<input id="pubMarginTop" type="number" min="1" max="5" step=".1" value="2.5"></label>
+     <label>Bottom margin (cm)<input id="pubMarginBottom" type="number" min="1" max="5" step=".1" value="2.5"></label>
+     <label>Left margin (cm)<input id="pubMarginLeft" type="number" min="1" max="5" step=".1" value="3"></label>
+     <label>Right margin (cm)<input id="pubMarginRight" type="number" min="1" max="5" step=".1" value="2.5"></label>
+     <label>Title alignment<select id="pubTitleAlignment"><option value="CENTER">Center</option><option value="LEFT">Left</option></select></label>
+     <label>Heading style<select id="pubHeadingStyle"><option value="NUMBERED">Numbered headings</option><option value="UNNUMBERED">Unnumbered headings</option></select></label>
+     <label>Abstract layout<select id="pubAbstractLayout"><option value="STRUCTURED">Structured (Background/Methods/Results/Conclusion)</option><option value="UNSTRUCTURED">Unstructured paragraph</option></select></label>
+     <label>Reference paragraph spacing<select id="pubReferenceSpacing"><option value="SINGLE">Single</option><option value="DOUBLE">Double</option></select></label>
+    </div>
+    <p class="muted small">Nilai awal hanya default teknis, bukan klaim bahwa jurnal tujuan memakai format tersebut. Simpan profil setelah memeriksa author guidelines.</p>
+   </details>
+   <p class="muted small">Use the current author guidelines of the selected journal. The SINTA label alone does not define its scope, template, word limits, or citation style.</p>
    </div>
    <div class="panel form-panel">
     <div class="panel-head"><div><h2>Academic manuscript workspace</h2><p class="muted">Draft each section from the actual review protocol, included studies, extraction matrix and synthesis. Keep unsupported claims out.</p></div><button class="btn primary" id="savePublication">Save manuscript</button></div>
@@ -127,7 +146,7 @@
      <label>Data availability<textarea id="mData" rows="2" placeholder="Search strategies, extraction data, repository link, or restrictions"></textarea></label>
     </div>
     <label>References (one reference per line; include DOI where available)<textarea id="mReferences" rows="8" placeholder="Paste complete references. Verify every item against the original source and journal style."></textarea></label>
-    <div class="row"><button class="btn outline" id="exportManuscript">Export manuscript · Markdown</button><button class="btn outline" id="exportPublicationAudit">Export readiness audit · CSV</button><span class="muted small">Markdown export is available in this frontend; DOCX template generation is not yet implemented.</span></div>
+    <div class="row"><button class="btn outline" id="exportManuscript">Export manuscript · Markdown</button><button class="btn primary" id="exportManuscriptDocx">Export formatted DOCX</button><button class="btn outline" id="exportPublicationAudit">Export readiness audit · CSV</button></div><p class="muted small">DOCX is generated from the formatting profile above. It is not a byte-for-byte clone of a publisher-provided Word template; verify final layout against the journal template before submission.</p>
    </div>
    <div class="panel form-panel">
     <div class="panel-head"><div><h2>Evidence-to-claim ledger</h2><p class="muted">Make the chain from manuscript claim to source study auditable. One claim per line, with study ID/title, page/table/figure, and supporting or contradictory evidence.</p></div></div>
